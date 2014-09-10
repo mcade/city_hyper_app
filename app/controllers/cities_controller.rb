@@ -5,6 +5,7 @@ class CitiesController < ApplicationController
   # GET /cities.json
   def index
     @cities = City.all
+    @instagram = Instagram.user_recent_media("254328524", {:count => 1})
   end
 
   # GET /cities/1

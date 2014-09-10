@@ -23,6 +23,10 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 
+gem "figaro"
+gem 'instagram'
+
+
 group :development do
   gem 'sqlite3', '1.3.9'
   gem 'spring',  '1.1.3'
