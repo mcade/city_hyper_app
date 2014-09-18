@@ -5,7 +5,32 @@ class CitiesController < ApplicationController
   # GET /cities.json
   def index
     @cities = City.all
-    @instagram = Instagram.user_recent_media("254328524", {:count => 1})
+    #@instagram = Instagram.user_recent_media("254328524", {:count => 1})
+    #@instagram = Instagram.location_recent_media(514276)
+
+    if params[:search].present?
+      result = Geocoder.coordinates(params[:search])
+      if result.present?
+        @instagram =  Instagram.media_search(result.first,result.last, {:count => 20})
+        @coord1 = result.first
+        @coord2 = result.last
+      else 
+      
+      end
+    else
+      result = Geocoder.coordinates("Chicago")
+      if result.present?
+        @instagram =  Instagram.media_search(result.first,result.last, {:count => 20})
+        @coord1 = result.first
+        @coord2 = result.last
+      else 
+      
+      end
+    end
+
+    
+
+
   end
 
   # GET /cities/1

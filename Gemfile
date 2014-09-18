@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem "figaro"
 gem 'instagram'
+gem 'geocoder'
 
 
 group :development do

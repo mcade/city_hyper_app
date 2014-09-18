@@ -26,8 +26,35 @@
 
 <%= link_to 'New City', new_city_path %>
 
-<% @instagram.each do |instagram| %>
+<br>
 
-  <%= image_tag instagram.images.standard_resolution.url %>
-
+<%= form_tag cities_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search Near", :name => nil %>
+  </p>
 <% end %>
+
+<iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDUo7lYHilY0a7Gh0n-bpFhmyccbYtwmXY
+    &center=<%= @coord1 %>,<%= @coord2 %>&zoom=9">
+</iframe>
+
+
+
+<br>
+
+<% if @instagram.present? %>
+  <% @instagram.each do |instagram| %>
+      <iframe src="<%= instagram.link %>/embed/" width="426" height="520" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+      <!-- <% if instagram.caption %>
+        <%= instagram.caption.text %>
+      <% end %>
+      <%= time_ago_in_words(DateTime.strptime(instagram.created_time,'%s')) %> ago -->
+  <% end %>
+<% end %>
+
+

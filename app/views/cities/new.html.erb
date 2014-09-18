@@ -3,3 +3,16 @@
 <%= render 'form' %>
 
 <%= link_to 'Back', cities_path %>
+
+
+
+<!-- <% @instagram.each do |instagram| %>
+  
+  <% if instagram.type == "image" %>
+    <%= image_tag instagram.images.standard_resolution.url %>
+  <% else %>
+    <%= video_tag instagram.videos.standard_resolution.url %>
+    <iframe src="<%= instagram.link %>/embed/" width="612" height="710" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+  <% end %>
+
+<% end %> -->
