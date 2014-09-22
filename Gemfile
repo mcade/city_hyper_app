@@ -25,7 +25,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem "figaro"
 gem 'instagram'
+gem 'twitter'
 gem 'geocoder'
+gem 'font-awesome-sass', '~> 4.2.0'
 
 
 group :development do

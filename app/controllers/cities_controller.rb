@@ -12,6 +12,8 @@ class CitiesController < ApplicationController
       result = Geocoder.coordinates(params[:search])
       if result.present?
         @instagram =  Instagram.media_search(result.first,result.last, {:count => 20})
+        @twitter = $twitter.search("geocode:#{result.first},#{result.last},10km", :result_type => "recent").take(20)
+     
         @coord1 = result.first
         @coord2 = result.last
       else 
@@ -21,6 +23,8 @@ class CitiesController < ApplicationController
       result = Geocoder.coordinates("Chicago")
       if result.present?
         @instagram =  Instagram.media_search(result.first,result.last, {:count => 20})
+   
+        @twitter = $twitter.search("geocode:#{result.first},#{result.last},10km", :result_type => "recent").take(20)
         @coord1 = result.first
         @coord2 = result.last
       else 

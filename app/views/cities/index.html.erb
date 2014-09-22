@@ -1,33 +1,3 @@
-<h1>Listing cities</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Country</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @cities.each do |city| %>
-      <tr>
-        <td><%= city.name %></td>
-        <td><%= city.country %></td>
-        <td><%= link_to 'Show', city %></td>
-        <td><%= link_to 'Edit', edit_city_path(city) %></td>
-        <td><%= link_to 'Destroy', city, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New City', new_city_path %>
-
-<br>
-
 <%= form_tag cities_path, :method => :get do %>
   <p>
     <%= text_field_tag :search, params[:search] %>
@@ -43,18 +13,53 @@
     &center=<%= @coord1 %>,<%= @coord2 %>&zoom=9">
 </iframe>
 
+<br>
 
+<section class="apicontent">
+  <div class="tabs tabs-style-bar">
+    <nav>
+      <ul>
+        <li><a href="#section-bar-1" class="icon icon-instagram"><span>Instagram</span></a></li>
+        <li><a href="#section-bar-2" class="icon icon-twitter"><span>Twitter</span></a></li>
+        <li><a href="#section-bar-3" class="icon icon-nyt"><span>New York TImes</span></a></li>
+      </ul>
+    </nav>
+    <div class="content-wrap">
+      <section id="section-bar-1">
+        <% if @instagram.present? %>
+          <% @instagram.each do |instagram| %>
+              <iframe src="<%= instagram.link %>/embed/" width="426" height="520" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+              <!-- <% if instagram.caption %>
+                <%= instagram.caption.text %>
+              <% end %>
+              <%= time_ago_in_words(DateTime.strptime(instagram.created_time,'%s')) %> ago -->
+          <% end %>
+        <% end %>
+      </section>
+      <section id="section-bar-2">
+        <% if @instagram.present? %>
+          <% @twitter.each do |twitter| %>
+              <blockquote class="twitter-tweet"><a href="<%= twitter.url %>"></a></blockquote>
+          <% end %>
+        <% end %>
+      </section>
+      <section id="section-bar-3"><p>3</p></section>
+    </div><!-- /content -->
+  </div><!-- /tabs -->
+</section>
 
 <br>
 
-<% if @instagram.present? %>
-  <% @instagram.each do |instagram| %>
-      <iframe src="<%= instagram.link %>/embed/" width="426" height="520" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-      <!-- <% if instagram.caption %>
-        <%= instagram.caption.text %>
-      <% end %>
-      <%= time_ago_in_words(DateTime.strptime(instagram.created_time,'%s')) %> ago -->
-  <% end %>
-<% end %>
 
+<script>
+  (function() {
+
+    [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+      new CBPFWTabs( el );
+    });
+
+  })();
+</script>
+
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 
